@@ -105,7 +105,31 @@ void DisplayAllProducts(List<Product> products, List<ProductType> productTypes)
 
 void DeleteProduct(List<Product> products, List<ProductType> productTypes)
 {
-    throw new NotImplementedException();
+    Console.Clear();
+    bool isProductDeleted = false;
+    while (isProductDeleted == false)
+    {
+        Console.WriteLine("Please choose an item to delete:");
+        for (int i = 0; i < products.Count; i++)
+        {
+            Product product = products[i];
+            ProductType productTypeQuery = productTypes.First(productType => product.ProductTypeId == productType.Id);
+            Console.WriteLine($"{i + 1}. {productTypeQuery.Title}: {product.Name}");
+        };
+        string choice = Console.ReadLine();
+        try
+        {
+            int productChoice = int.Parse(choice);
+            int choiceIndex = productChoice - 1;
+            Console.WriteLine($"You have removed {products[choiceIndex].Name}");
+            products.RemoveAt(choiceIndex);
+            isProductDeleted = true;
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Please enter a valid number");
+        }
+    }
 }
 
 void AddProduct(List<Product> products, List<ProductType> productTypes)
