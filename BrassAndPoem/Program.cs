@@ -91,15 +91,16 @@ while (choice != "5")
     Console.ReadKey();
     Console.Clear();
 }
-
-void DisplayMenu()
-{
-    throw new NotImplementedException();
-}
-
 void DisplayAllProducts(List<Product> products, List<ProductType> productTypes)
 {
-    throw new NotImplementedException();
+    Console.Clear();
+    Console.WriteLine("Available Items:");
+    for (int i = 0; i < products.Count; i++)
+    {
+        Product product = products[i];
+        ProductType productTypeQuery = productTypes.First(productType => product.ProductTypeId == productType.Id);
+        Console.WriteLine($"{i + 1}. {productTypeQuery.Title}: {product.Name} is ${product.Price}");
+    };
 }
 
 void DeleteProduct(List<Product> products, List<ProductType> productTypes)
